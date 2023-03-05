@@ -1,0 +1,13 @@
+name: actions-ci-cd
+run-name: ${{ github.actor}} simple CI/CD
+on: [push]
+jobs:
+  build-docker-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Dotnet Environment
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.0'
+      - run: dotnet build -c Release HelloActions.csproj
